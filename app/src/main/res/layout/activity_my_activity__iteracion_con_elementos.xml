@@ -29,7 +29,7 @@
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="300dp"
-            android:text="Hola"
+            android:text="Saludo"
             android:textAlignment="center"
             />
 
@@ -83,7 +83,8 @@
             android:text="@string/Time"
             android:id="@+id/checkBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
 
         </CheckBox>
 
@@ -91,14 +92,16 @@
             android:id="@+id/timePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:layout_marginTop="1150px">
 
         </TimePicker>
         <DatePicker
             android:id="@+id/datePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:layout_marginTop="1150px">
 
         </DatePicker>
 
