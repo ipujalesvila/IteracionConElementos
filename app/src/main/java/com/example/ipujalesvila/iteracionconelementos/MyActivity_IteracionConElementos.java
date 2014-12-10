@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -28,13 +30,17 @@ public class MyActivity_IteracionConElementos extends Activity {
         final RadioButton miRadioSr = (RadioButton) findViewById(R.id.rbSr);
         final RadioButton miRadioSra = (RadioButton) findViewById(R.id.rbSra);
 
-        final RadioButton miRadioHola = (RadioButton) findViewById(R.id.rbHola);
-        final RadioButton miRadioAdios = (RadioButton) findViewById(R.id.rbAdios);
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.HelloBye, android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
 
         miboton.setOnClickListener(new View.OnClickListener() {
 
-            String saludo ="";
+            String saludo = "";
 
             EditText editText = (EditText) findViewById(R.id.entrada);
 
@@ -53,39 +59,31 @@ public class MyActivity_IteracionConElementos extends Activity {
                     return;
                 }
 
-
-
-
-                if (miRadioHola.isChecked()) {
-                    saludo ="Hola  ";
-                } else if (miRadioAdios.isChecked()) {
-                    saludo ="Adios ";
-
-                }
+                saludo = saludo + spinner.getSelectedItem()+" ";
 
 
                 if (miRadioSr.isChecked()) {
-                    saludo =saludo +"Sr. : "+editText.getText();
+                    saludo = saludo + "Sr. : " + editText.getText();
                 } else if (miRadioSra.isChecked()) {
-                    saludo =saludo +"Sra. : "+editText.getText();
+                    saludo = saludo + "Sra. : " + editText.getText();
 
                 }
 
 
-                CheckBox timeCheckBox = (CheckBox)findViewById(R.id.checkBox);
-                if (timeCheckBox.isChecked()){
-                    DatePicker datePick = (DatePicker)findViewById(R.id.datePicker);
-                    String dateToShow = datePick.getDayOfMonth()+"/"+(datePick.getMonth()+1)+"/"+datePick.getYear();
+                CheckBox timeCheckBox = (CheckBox) findViewById(R.id.checkBox);
+                if (timeCheckBox.isChecked()) {
+                    DatePicker datePick = (DatePicker) findViewById(R.id.datePicker);
+                    String dateToShow = datePick.getDayOfMonth() + "/" + (datePick.getMonth() + 1) + "/" + datePick.getYear();
                     TimePicker timePick = (TimePicker) findViewById(R.id.timePicker);
-                    dateToShow += " "+timePick.getCurrentHour()+":"+timePick.getCurrentMinute();
+                    dateToShow += " " + timePick.getCurrentHour() + ":" + timePick.getCurrentMinute();
 
-                    saludo= saludo +" "+dateToShow;
+                    saludo = saludo + " " + dateToShow;
 
                 }
                 text.setText(saludo);
 
-                Intent intento = new Intent(MyActivity_IteracionConElementos.this,Resultado.class);
-                intento.putExtra("saludo",saludo);
+                Intent intento = new Intent(MyActivity_IteracionConElementos.this, Resultado.class);
+                intento.putExtra("saludo", saludo);
                 startActivity(intento);
 
 
