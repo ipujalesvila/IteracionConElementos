@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.CompoundButton;
 
 
 public class MyActivity_IteracionConElementos extends Activity {
@@ -87,6 +88,17 @@ public class MyActivity_IteracionConElementos extends Activity {
                 startActivity(intento);
 
 
+            }
+        });
+        CheckBox checkBox = (CheckBox)findViewById(R.id.checkBox);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                int visivility = isChecked?View.VISIBLE:View.GONE;
+                View view = findViewById(R.id.timePicker);
+                view.setVisibility(visivility);
+                view = findViewById(R.id.datePicker);
+                view.setVisibility(visivility);
             }
         });
     }
