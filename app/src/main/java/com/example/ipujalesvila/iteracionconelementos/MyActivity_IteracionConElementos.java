@@ -8,9 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 
@@ -52,6 +55,20 @@ public class MyActivity_IteracionConElementos extends Activity {
                     text.setText("Hola Sra. : " + editText.getText());
 
                 }
+
+
+
+                CheckBox timeCheckBox = (CheckBox)findViewById(R.id.checkBox);
+                if (timeCheckBox.isChecked()){
+                    DatePicker datePick = (DatePicker)findViewById(R.id.datePicker);
+                    String dateToShow = datePick.getDayOfMonth()+"/"+(datePick.getMonth()+1)+"/"+datePick.getYear();
+                    TimePicker timePick = (TimePicker) findViewById(R.id.timePicker);
+                    dateToShow += " "+timePick.getCurrentHour()+":"+timePick.getCurrentMinute();
+
+                    String saludo= text.getText() +" "+dateToShow;
+                    text.setText(saludo);
+                }
+
                 Intent intento = new Intent(MyActivity_IteracionConElementos.this,Resultado.class);
                 intento.putExtra("saludo",text.getText().toString());
                 startActivity(intento);
