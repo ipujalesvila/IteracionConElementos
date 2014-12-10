@@ -73,36 +73,10 @@
                 android:text="Sra." />
         </RadioGroup>
 
-        <RadioGroup
-            android:id="@+id/RadioGroup2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30px"
-            android:layout_marginTop="600px"
-            android:orientation="horizontal"
-            >
-
-            <RadioButton
-                android:id="@+id/rbHola"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:checked="true"
-                android:text="Hola" />
-
-            <RadioButton
-                android:id="@+id/rbAdios"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="260px"
-                android:checked="false"
-                android:text="Adios" />
-        </RadioGroup>
+        <Spinner
+            android:id="@+id/planets_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
 
         <CheckBox
             android:text="@string/Time"
