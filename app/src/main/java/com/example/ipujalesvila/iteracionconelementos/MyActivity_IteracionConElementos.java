@@ -28,14 +28,22 @@ public class MyActivity_IteracionConElementos extends Activity {
         final RadioButton miRadioSr = (RadioButton) findViewById(R.id.rbSr);
         final RadioButton miRadioSra = (RadioButton) findViewById(R.id.rbSra);
 
+        final RadioButton miRadioHola = (RadioButton) findViewById(R.id.rbHola);
+        final RadioButton miRadioAdios = (RadioButton) findViewById(R.id.rbAdios);
 
 
         miboton.setOnClickListener(new View.OnClickListener() {
+
+            String saludo ="";
 
             EditText editText = (EditText) findViewById(R.id.entrada);
 
             @Override
             public void onClick(View v) {
+                TextView text = (TextView) findViewById(R.id.saludo);
+                text.setText("");
+                saludo = "";
+
                 if ("".equals(editText.getText().toString().trim())) {
                     CharSequence msg = getResources().getString(R.string.toastNombre);
                     //mostrar dialogo
@@ -45,17 +53,23 @@ public class MyActivity_IteracionConElementos extends Activity {
                     return;
                 }
 
-                TextView text = (TextView) findViewById(R.id.saludo);
 
 
 
-                if (miRadioSr.isChecked()) {
-                    text.setText("Hola Sr. : " + editText.getText());
-                } else if (miRadioSra.isChecked()) {
-                    text.setText("Hola Sra. : " + editText.getText());
+                if (miRadioHola.isChecked()) {
+                    saludo ="Hola  ";
+                } else if (miRadioAdios.isChecked()) {
+                    saludo ="Adios ";
 
                 }
 
+
+                if (miRadioSr.isChecked()) {
+                    saludo =saludo +"Sr. : "+editText.getText();
+                } else if (miRadioSra.isChecked()) {
+                    saludo =saludo +"Sra. : "+editText.getText();
+
+                }
 
 
                 CheckBox timeCheckBox = (CheckBox)findViewById(R.id.checkBox);
@@ -65,12 +79,13 @@ public class MyActivity_IteracionConElementos extends Activity {
                     TimePicker timePick = (TimePicker) findViewById(R.id.timePicker);
                     dateToShow += " "+timePick.getCurrentHour()+":"+timePick.getCurrentMinute();
 
-                    String saludo= text.getText() +" "+dateToShow;
-                    text.setText(saludo);
+                    saludo= saludo +" "+dateToShow;
+
                 }
+                text.setText(saludo);
 
                 Intent intento = new Intent(MyActivity_IteracionConElementos.this,Resultado.class);
-                intento.putExtra("saludo",text.getText().toString());
+                intento.putExtra("saludo",saludo);
                 startActivity(intento);
 
 
